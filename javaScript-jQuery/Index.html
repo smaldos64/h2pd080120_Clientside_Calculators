@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>javaScript</title>
+    <script src="Scripts/jquery-3.3.1.min.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+</head>
+
+<body>
+    <input id="txtFirstOperand" type="text" name="CalculatorTextField" />
+
+    <select id="SelectMathOperation"></select>
+
+    <input id="txtSecondOperand" type="text" name="CalculatorTextField" />
+
+    <br />
+    <br />
+    <input id="btnCalculate" type="button" value="Beregn" onclick="CalcMathResult()"/>
+    &nbsp;
+    <input id="btnClear" type="button" value="Clear" onclick="ClrTextBoxes()"/>
+    <br />
+    <br />
+    Resultat :
+    &nbsp;
+    <input id="txtResult" type="text" disabled="disabled" name="CalculatorTextField" />
+</body>
+
+</html>
+
+<script src="ScriptFiles/Math.js"></script>
+<script type="text/javascript">
+    TextBoxElements = document.getElementsByName("CalculatorTextField");
+    
+    Counter = 0;
+    Select = document.getElementById("SelectMathOperation");
+    while (Counter < MathArray.length) {
+        var option = document.createElement("option");
+        option.value = MathArray[Counter].OperatorValue;
+        option.text = MathArray[Counter].Operator;
+        Select.appendChild(option);
+        Counter++;
+    }
+
+    function ClrTextBoxes() {
+        ClearTextBoxes(TextBoxElements);
+    }
+
+    function CalcMathResult() {
+        Value = parseInt(document.getElementById("SelectMathOperation").value);
+        MathOperationResult = CalculateMathResult(Value,
+                                                  document.getElementById("txtFirstOperand").value,
+                                                  document.getElementById("txtSecondOperand").value);
+        document.getElementById("txtResult").value = MathOperationResult;
+    }
+</script>

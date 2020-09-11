@@ -1,0 +1,13 @@
+﻿body {
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 20px;
+}
+
+.CalculatorDisplay {
+    margin-left: 20px;
+}
+
+input {
+    text-align: right;
+}

@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>javaScript</title>
+    <script src="Scripts/jquery-3.3.1.min.js"></script>
+    <script src="Scripts/bootstrap.js"></script>
+    <link href="Content/bootstrap.css" rel="stylesheet" />
+    <link href="StyleSheet/StyleSheet.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="row">
+        <div class="CalculatorDisplayLine1">
+            <input type="text" id="txtCalculatorLine1" name="txtCalculatorLine" width="200" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="CalculatorDisplayLine2">
+            <input type="text" id="txtCalculatorLine2" name="txtCalculatorLine" width="200" />
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="CalculatorButtons">
+
+        </div>
+    </div>
+</body>
+
+</html>
+
+<script src="ScriptFiles/MathExtended.js"></script>
+<script type="text/javascript">
+    MaKeMathNumericKeys();
+    MakeMathOperationKeys();
+    AddButtonsToPage();
+</script>

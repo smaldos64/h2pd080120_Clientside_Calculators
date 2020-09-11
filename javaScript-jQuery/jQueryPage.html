@@ -1,0 +1,59 @@
+﻿<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>jQuery</title>
+    <script src="Scripts/jquery-3.3.1.js"></script>
+</head>
+
+<body>
+    <input id="txtFirstOperand" type="text"/>
+    
+    <select id="SelectMathOperation">
+    </select>
+    
+    <input id="txtSecondOperand" type="text" />
+
+    <br />
+    <br />
+    <input id="btnCalculate" type="button" value="Beregn" />
+    &nbsp;
+    <input id="btnClear" type="button" value="Clear" />
+    <br />
+    <br />
+    Resultat :
+    &nbsp;
+    <input id="txtResult" type="text" disabled="disabled" />
+</body>
+
+</html>
+
+<script src="ScriptFiles/Math.js"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        Counter = 0;
+        while (Counter < MathArray.length) {
+            var option = document.createElement("option");
+            option.value = MathArray[Counter].OperatorValue;
+            option.text = MathArray[Counter].Operator;
+            $("#SelectMathOperation").append(option)
+            Counter++;
+        }
+
+        TextBoxElements = $(":input[type=text]");
+       
+        $("#btnClear").click(function () {
+            ClearTextBoxes(TextBoxElements);
+        });
+
+        $("#btnCalculate").click(function () {
+            Value = parseInt($("#SelectMathOperation").val());
+            MathOperationResult = CalculateMathResult(Value, $("#txtFirstOperand").val(), $("#txtSecondOperand").val());
+            $("#txtResult").val(MathOperationResult);
+        });
+      
+    });
+
+</script>

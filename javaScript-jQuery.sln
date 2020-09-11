@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28010.2016
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "javaScript-jQuery", "javaScript-jQuery\", "{5BFC74D8-D4A8-4EBA-B1A1-3EE0BCD180C6}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.6.1"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_57106"
+		Debug.AspNetCompiler.PhysicalPath = "javaScript-jQuery\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_57106\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_57106"
+		Release.AspNetCompiler.PhysicalPath = "javaScript-jQuery\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_57106\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "57106"
+		SlnRelativePath = "javaScript-jQuery\"
+		DefaultWebSiteLanguage = "Visual C#"
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5BFC74D8-D4A8-4EBA-B1A1-3EE0BCD180C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5BFC74D8-D4A8-4EBA-B1A1-3EE0BCD180C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7FE4ABB5-5837-420F-A688-C360BF4B3BD2}
+	EndGlobalSection
+EndGlobal
