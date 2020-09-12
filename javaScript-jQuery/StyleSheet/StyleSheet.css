@@ -4,10 +4,15 @@
     margin-top: 20px;
 }
 
-.CalculatorDisplay {
+.CalculatorDisplayLine1, .CalculatorDisplayLine2, .CalculatorButtons {
     margin-left: 20px;
 }
 
 input {
     text-align: right;
+}
+
+input[type=button] {
+    text-align: center;
+    margin: auto; 
 }

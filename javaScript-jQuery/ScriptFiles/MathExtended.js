@@ -3,64 +3,93 @@
 Counter = 0;
 MathOperationValue = -1;
 
-function MaKeMathNumericKeys() {
+CalculatorLine1 = null;
+CalculatorLine2 = null;
+TextBoxElements = null;
+
+function MakeMathNumericKeys() {
+    CalculatorLine1 = document.getElementById("txtCalculatorLine1");
+    CalculatorLine2 = document.getElementById("txtCalculatorLine2");
+    TextBoxElements = document.getElementsByName("txtCalculatorLine");
+
     for (Counter = 9; Counter >= 0; Counter--) {
         MathArray.push({
             //Text: Counter.toString(), ID: "btn" + Counter.toString(), BackgroundColor: "blue", TextColor: "white", MathOperation: function (Counter) { AddNumericCharacterToTextBox(Counter) }
             Text: Counter.toString(), ID: "btn" + Counter.toString(), OperatorValue: Counter, BackgroundColor: "blue", TextColor: "white", MathOperation: "AddNumericCharacterToTextBox(" + Counter + ")", MathOperationCalculate: null 
         });
     }
+
+    Counter = MathArray.length;
+    TextHolder = '.';
+    MathArray.push({
+        Text: TextHolder, ID: "btn" + TextHolder, OperatorValue: Counter++, BackgroundColor: "red", TextColor: "white", MathOperation: "AddNumericCharacterToTextBox('" + "." + "')", MathOperationCalculate: null
+    });
+
+    Counter = MathArray.length;
+    TextHolder = '+/-';
+    MathArray.push({
+        Text: TextHolder, ID: "btnPlusMinus" + TextHolder, OperatorValue: Counter++, BackgroundColor: "red", TextColor: "white", MathOperation: "AddNumericCharacterToTextBox('" + "±" + "')", MathOperationCalculate: null
+    });
 }
 
 function MakeMathOperationKeys() {
     Counter = MathArray.length;
 
+    TextHolder = 'Clr';
     MathArray.push({
-        Text: 'Clr', ID: "btnClr", OperatorValue: Counter++, BackgroundColor: "blue", TextColor: "white", MathOperation: "ClrDisplayAndStatus()", MathOperationCalculate: null 
+        Text: TextHolder, ID: "btn" + TextHolder, OperatorValue: Counter++, BackgroundColor: "blue", TextColor: "white", MathOperation: "ClrDisplayAndStatus()", MathOperationCalculate: null 
     });
 
+    TextHolder = '=';
     MathArray.push({
-        Text: '=', ID: "btnEqual", OperatorValue: Counter++, BackgroundColor: "blue", TextColor: "white", MathOperation: function () { ClrDisplayAndStatus() }
+        Text: TextHolder, ID: "btnEqual", OperatorValue: Counter++, BackgroundColor: "blue", TextColor: "white", MathOperation: function () { ClrDisplayAndStatus() }
     });
 
     TextHolder = '+';
     MathArray.push({
-        Text: TextHolder, ID: "btn+", OperatorValue: Counter, BackgroundColor: "blue", TextColor: "white", MathOperation: "SetMathOperatorValue(" + Counter + "," + TextHolder + ")",  MathOperationCalculate: function (a, b) { return a + b }
+        Text: TextHolder, ID: "btn" + TextHolder, OperatorValue: Counter, BackgroundColor: "blue", TextColor: "white", MathOperation: "SetMathOperatorValue(" + Counter + ",'" + TextHolder + "')", MathOperationCalculate: function (a, b) { return a + b }
     });
     Counter++;
 
+    TextHolder = '-';
     MathArray.push({
-        Text: '-', ID: "btn-", OperatorValue: Counter, BackgroundColor: "blue", TextColor: "white", MathOperation: "SetMathOperatorValue(" + Counter + ")", MathOperationCalculate: function (a, b) { return a - b }
+        Text: TextHolder, ID: "btn" + TextHolder, OperatorValue: Counter, BackgroundColor: "blue", TextColor: "white", MathOperation: "SetMathOperatorValue(" + Counter + ",'" + TextHolder + "')", MathOperationCalculate: function (a, b) { return a - b }
     });
     Counter++;
 
+    TextHolder = '*';
     MathArray.push({
-        Text: '*', ID: "btn*", OperatorValue: Counter, BackgroundColor: "blue", TextColor: "white", MathOperation: "SetMathOperatorValue(" + Counter + ")", MathOperationCalculate: function (a, b) { return a * b }
+        Text: TextHolder, ID: "btn" + TextHolder, OperatorValue: Counter, BackgroundColor: "blue", TextColor: "white", MathOperation: "SetMathOperatorValue(" + Counter + ",'" + TextHolder + "')", MathOperationCalculate: function (a, b) { return a * b }
     });
     Counter++;
 
+    TextHolder = '/';
     MathArray.push({
-        Text: '/', ID: "btn/", OperatorValue: Counter, BackgroundColor: "blue", TextColor: "white", MathOperation: "SetMathOperatorValue(" + Counter + ")", MathOperationCalculate: function (a, b) { return a / b }
+        Text: TextHolder, ID: "btn" + TextHolder, OperatorValue: Counter, BackgroundColor: "blue", TextColor: "white", MathOperation: "SetMathOperatorValue(" + Counter + ",'" + TextHolder + "')", MathOperationCalculate: function (a, b) { return a / b }
     });
     Counter++;
 
+    TextHolder = '%';
     MathArray.push({
-        Text: '%', ID: "btn%", OperatorValue: Counter, BackgroundColor: "blue", TextColor: "white", MathOperation: "SetMathOperatorValue(" + Counter + ")", MathOperationCalculate: function (a, b) { return a / b * 100 }
+        Text: TextHolder, ID: "btn" + TextHolder, OperatorValue: Counter, BackgroundColor: "blue", TextColor: "white", MathOperation: "SetMathOperatorValue(" + Counter + ",'" + TextHolder + "')", MathOperationCalculate: function (a, b) { return a / b * 100 }
     });
     Counter++;
 
+    TextHolder = '&';
     MathArray.push({
-        Text: '&', ID: "btn&", OperatorValue: Counter, BackgroundColor: "blue", TextColor: "white", MathOperation: "SetMathOperatorValue(" + Counter + ")", MathOperationCalculate: function (a, b) { return a & b }
+        Text: TextHolder, ID: "btn" + TextHolder, OperatorValue: Counter, BackgroundColor: "blue", TextColor: "white", MathOperation: "SetMathOperatorValue(" + Counter + ",'" + TextHolder + "')", MathOperationCalculate: function (a, b) { return a & b }
     });
     Counter++;
 
+    TextHolder = '|';
     MathArray.push({
-        Text: '|', ID: "btn|", OperatorValue: Counter, BackgroundColor: "blue", TextColor: "white", MathOperation: "SetMathOperatorValue(" + Counter + ")", MathOperationCalculate: function (a, b) { return a | b }
+        Text: TextHolder, ID: "btn" + TextHolder, OperatorValue: Counter, BackgroundColor: "blue", TextColor: "white", MathOperation: "SetMathOperatorValue(" + Counter + ",'" + TextHolder + "')", MathOperationCalculate: function (a, b) { return a | b }
     });
     Counter++;
 
+    TextHolder = 'Pow';
     MathArray.push({
-        Text: 'Pow', ID: "btnPow", OperatorValue: Counter, BackgroundColor: "green", TextColor: "white", MathOperation: "SetMathOperatorValue(" + Counter + ")", MathOperationCalculate: function (a, b) { return Math.pow(a, b) }
+        Text: TextHolder, ID: "btn" + TextHolder, OperatorValue: Counter, BackgroundColor: "green", TextColor: "white", MathOperation: "SetMathOperatorValue(" + Counter + ",'" + TextHolder + "')", MathOperationCalculate: function (a, b) { return Math.pow(a, b) }
     });
     Counter++;
 }
@@ -68,7 +97,7 @@ function MakeMathOperationKeys() {
 function AddButtonsToPage() {
     for (Counter = 0; Counter < MathArray.length; Counter++) {
         if (0 == Counter % 3) {
-            document.write("\n");
+            document.write("<br\>");
         }
 
         var button = document.createElement('input');
@@ -79,7 +108,9 @@ function AddButtonsToPage() {
         //button.setAttribute('form', 'myform');
         button.style.backgroundColor = MathArray[Counter].BackgroundColor;
         button.style.color = MathArray[Counter].TextColor;
-        button.style.width = "150";
+        button.style.width = "100px";
+        button.style.height = "40px";
+        //button.style.textAlign = "center";
         document.body.appendChild(button);
         //button.setAttribute("class", "btn btn-primary");
         //$('#button').addClass('myClass');
@@ -89,32 +120,63 @@ function AddButtonsToPage() {
 }
 
 function ClrDisplayAndStatus() {
-    TextBoxElements = document.getElementsByName("txtCalculatorLine");
+    //TextBoxElements = document.getElementsByName("txtCalculatorLine");
 
     Counter = 0;
     while (Counter < TextBoxElements.length) {
         TextBoxElements[Counter].value = "";
         Counter++;
     }
-    //document.getElementById("txtCalculatorLine").value = "";
 }
 
 function AddNumericCharacterToTextBox(argument) {
-    document.getElementById("txtCalculatorLine2").value =
-        document.getElementById("txtCalculatorLine2").value + argument.toString();
-}
-
-function ClearTextBoxes(TextBoxArray) {
-    Counter = 0;
-    while (Counter < TextBoxArray.length) {
-        TextBoxArray[Counter].value = "";
-        Counter++;
+    if ('±' == argument) {
+        if (CalculatorLine2.value.length > 0) {
+            if (CalculatorLine2.value.charAt(0) != '-') {
+                CalculatorLine2.value = '-' + CalculatorLine2.value;
+            }
+            else {
+                CalculatorLine2.value = CalculatorLine2.value.substring(1);
+            }
+        }
+        return;
     }
+
+    if (0 == argument) {
+        if ((1 == CalculatorLine2.value.length) && ('0' == CalculatorLine2.value)) {
+            return;
+        }
+    }
+
+    if (('.' == argument) && (CalculatorLine2.value.search('.') != -1)) {
+            return;
+    }
+    
+    if ((1 == CalculatorLine2.value.length) && ('0' == CalculatorLine2.value) &&
+        (argument != '.')) {
+        CalculatorLine2.value = argument;
+        return;
+    }
+
+    CalculatorLine2.value = CalculatorLine2.value + argument.toString();
 }
 
 function SetMathOperatorValue(Value, ValueText) {
-    MathOperationValue = Argument;
-    document.getElementById("txtCalculatorLine1").value = document.getElementById("txtCalculatorLine1").value + " " + ValueText;
+    if ((0 != CalculatorLine2.value.length) || (0 != CalculatorLine1.value.length) ) {
+        MathOperationValue = Value;
+        if (0 == CalculatorLine1.value.length) {
+            CalculatorLine1.value = CalculatorLine2.value + " " + ValueText;
+            CalculatorLine2.value = "";
+        }
+        else {
+            var SpacePosition = CalculatorLine1.value.search(' ');
+            if (SpacePosition > 0) {
+                CalculatorLine1.value = CalculatorLine1.value.substring(0, SpacePosition);
+                CalculatorLine1.value += " " + ValueText;
+            }
+        }
+        //document.getElementById("txtCalculatorLine1").value = document.getElementById("txtCalculatorLine1").value + " " + ValueText;
+    }
 }
 
 function CalcMathResult() {
@@ -123,8 +185,6 @@ function CalcMathResult() {
         document.getElementById("txtCalculatorLine2").value);
     document.getElementById("txtResult").value = MathOperationResult;
 }
-
-function 
 
 function CalculateMathResult(MathOperation, Value1String, Value2String) {
     Counter = 0;
