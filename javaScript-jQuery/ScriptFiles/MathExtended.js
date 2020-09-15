@@ -2,9 +2,13 @@
 
 Counter = 0;
 MathOperationValue = -1;
-//PreviousResultIsShownInDisplay = false;
+
 const CalculatorModeEnum = Object.freeze({ "NewCalculation": 1, "CalculationOnPrevioiusResult": 2 });
 let CalculatorMode = CalculatorModeEnum.NewCalculation;
+
+const CalculationTypeEnum = Object.freeze({ "CalculateOn2Numbers": 1, "CalculateOn1Number": 2 });
+let CalculationType = CalculationTypeEnum.CalculateOn2Numbers;
+
 
 CalculatorLine1 = null;
 CalculatorLine2 = null;
@@ -38,61 +42,72 @@ function MakeMathNumericKeys() {
 function MakeMathOperationKeys() {
     Counter = MathArray.length;
 
-    TextHolder = 'Clr';
+    TextHolder = 'C';
     MathArray.push({
-        Text: TextHolder, ID: "btn" + TextHolder, OperatorValue: Counter++, BackgroundColor: "blue", TextColor: "white", MathOperation: "ClrDisplayAndStatus()", MathOperationCalculate: null 
+        Text: TextHolder, ID: "btn" + TextHolder, OperatorValue: Counter++, BackgroundColor: "red", TextColor: "white", MathOperation: "ClrDisplayAndStatus()", MathOperationCalculate: null 
+    });
+
+    TextHolder = '<-';
+    MathArray.push({
+        Text: TextHolder, ID: "btn" + TextHolder, OperatorValue: Counter++, BackgroundColor: "red", TextColor: "white", MathOperation: "ClrLastCharacter()", MathOperationCalculate: null
     });
 
     TextHolder = '=';
     MathArray.push({
-        Text: TextHolder, ID: "btnEqual", OperatorValue: Counter++, BackgroundColor: "blue", TextColor: "white", MathOperation: "CalcMathResult()", MathOperationCalculate: null
+        Text: TextHolder, ID: "btnEqual", OperatorValue: Counter++, BackgroundColor: "red", TextColor: "white", MathOperation: "CalcMathResult()", MathOperationCalculate: null
     });
 
     TextHolder = '+';
     MathArray.push({
-        Text: TextHolder, ID: "btn" + TextHolder, OperatorValue: Counter, BackgroundColor: "blue", TextColor: "white", MathOperation: "SetMathOperatorValue(" + Counter + ",'" + TextHolder + "')", MathOperationCalculate: function (a, b) { return a + b }
+        Text: TextHolder, ID: "btn" + TextHolder, OperatorValue: Counter, BackgroundColor: "green", TextColor: "white", MathOperation: "SetMathOperatorValue(" + Counter + ",'" + TextHolder + "')", MathOperationCalculate: function (a, b) { return a + b }
     });
     Counter++;
 
     TextHolder = '-';
     MathArray.push({
-        Text: TextHolder, ID: "btn" + TextHolder, OperatorValue: Counter, BackgroundColor: "blue", TextColor: "white", MathOperation: "SetMathOperatorValue(" + Counter + ",'" + TextHolder + "')", MathOperationCalculate: function (a, b) { return a - b }
+        Text: TextHolder, ID: "btn" + TextHolder, OperatorValue: Counter, BackgroundColor: "green", TextColor: "white", MathOperation: "SetMathOperatorValue(" + Counter + ",'" + TextHolder + "')", MathOperationCalculate: function (a, b) { return a - b }
     });
     Counter++;
 
     TextHolder = '*';
     MathArray.push({
-        Text: TextHolder, ID: "btn" + TextHolder, OperatorValue: Counter, BackgroundColor: "blue", TextColor: "white", MathOperation: "SetMathOperatorValue(" + Counter + ",'" + TextHolder + "')", MathOperationCalculate: function (a, b) { return a * b }
+        Text: TextHolder, ID: "btn" + TextHolder, OperatorValue: Counter, BackgroundColor: "green", TextColor: "white", MathOperation: "SetMathOperatorValue(" + Counter + ",'" + TextHolder + "')", MathOperationCalculate: function (a, b) { return a * b }
     });
     Counter++;
 
     TextHolder = '/';
     MathArray.push({
-        Text: TextHolder, ID: "btn" + TextHolder, OperatorValue: Counter, BackgroundColor: "blue", TextColor: "white", MathOperation: "SetMathOperatorValue(" + Counter + ",'" + TextHolder + "')", MathOperationCalculate: function (a, b) { return a / b }
+        Text: TextHolder, ID: "btn" + TextHolder, OperatorValue: Counter, BackgroundColor: "green", TextColor: "white", MathOperation: "SetMathOperatorValue(" + Counter + ",'" + TextHolder + "')", MathOperationCalculate: function (a, b) { return a / b }
     });
     Counter++;
 
     TextHolder = '%';
     MathArray.push({
-        Text: TextHolder, ID: "btn" + TextHolder, OperatorValue: Counter, BackgroundColor: "blue", TextColor: "white", MathOperation: "SetMathOperatorValue(" + Counter + ",'" + TextHolder + "')", MathOperationCalculate: function (a, b) { return a / b * 100 }
+        Text: TextHolder, ID: "btn" + TextHolder, OperatorValue: Counter, BackgroundColor: "green", TextColor: "white", MathOperation: "SetMathOperatorValue(" + Counter + ",'" + TextHolder + "')", MathOperationCalculate: function (a, b) { return (b / 100) * a }
     });
     Counter++;
 
     TextHolder = '&';
     MathArray.push({
-        Text: TextHolder, ID: "btn" + TextHolder, OperatorValue: Counter, BackgroundColor: "blue", TextColor: "white", MathOperation: "SetMathOperatorValue(" + Counter + ",'" + TextHolder + "')", MathOperationCalculate: function (a, b) { return a & b }
+        Text: TextHolder, ID: "btn" + TextHolder, OperatorValue: Counter, BackgroundColor: "green", TextColor: "white", MathOperation: "SetMathOperatorValue(" + Counter + ",'" + TextHolder + "')", MathOperationCalculate: function (a, b) { return a & b }
     });
     Counter++;
 
     TextHolder = '|';
     MathArray.push({
-        Text: TextHolder, ID: "btn" + TextHolder, OperatorValue: Counter, BackgroundColor: "blue", TextColor: "white", MathOperation: "SetMathOperatorValue(" + Counter + ",'" + TextHolder + "')", MathOperationCalculate: function (a, b) { return a | b }
+        Text: TextHolder, ID: "btn" + TextHolder, OperatorValue: Counter, BackgroundColor: "green", TextColor: "white", MathOperation: "SetMathOperatorValue(" + Counter + ",'" + TextHolder + "')", MathOperationCalculate: function (a, b) { return a | b }
     });
     Counter++;
 
-    TextHolder = 'Pow';
+    TextHolder = 'x^y';
     MathArray.push({
         Text: TextHolder, ID: "btn" + TextHolder, OperatorValue: Counter, BackgroundColor: "green", TextColor: "white", MathOperation: "SetMathOperatorValue(" + Counter + ",'" + TextHolder + "')", MathOperationCalculate: function (a, b) { return Math.pow(a, b) }
+    });
+    Counter++;
+
+    TextHolder = 'x^2';
+    MathArray.push({
+        Text: TextHolder, ID: "btn" + TextHolder, OperatorValue: Counter, BackgroundColor: "green", TextColor: "white", MathOperation: "CalcMathResult(" + Counter + ")", MathOperationCalculate: function (a) { return Math.pow(a, 2) }
     });
     Counter++;
 }
@@ -127,6 +142,12 @@ function ClrDisplayAndStatus() {
     while (Counter < TextBoxElements.length) {
         TextBoxElements[Counter].value = "";
         Counter++;
+    }
+}
+
+function ClrLastCharacter() {
+    if (CalculatorLine2.value.length > 0) {
+        CalculatorLine2.value = CalculatorLine2.value.substring(0, CalculatorLine2.value.length - 1);
     }
 }
 
@@ -197,26 +218,46 @@ function SetMathOperatorValue(Value, ValueText) {
     }
 }
 
-function CalcMathResult() {
-    if ((0 != CalculatorLine1.value.length) && (0 != CalculatorLine2.value.length)) {
+function CalcMathResult(Value) {
+    if ((null != Value) && (0 != CalculatorLine2.value.length)) {
+        MathOperationValue = Value;
+        CalculationType = CalculationTypeEnum.CalculateOn1Number;
         MathOperationResult = CalculateMathResult(MathOperationValue,
             GetMathStringFromCalculatorLine1(CalculatorLine1.value),
             CalculatorLine2.value);
-        //ClrDisplayAndStatus();
         CalculatorLine2.value = MathOperationResult;
+    }
+    else {
+        if ((0 != CalculatorLine1.value.length) && (0 != CalculatorLine2.value.length)) {
+            CalculationType = CalculationTypeEnum.CalculateOn2Numbers;
+            MathOperationResult = CalculateMathResult(MathOperationValue,
+                GetMathStringFromCalculatorLine1(CalculatorLine1.value),
+                CalculatorLine2.value);
+            //ClrDisplayAndStatus();
+            CalculatorLine2.value = MathOperationResult;
+        }
     }
 }
 
 function CalculateMathResult(MathOperation, Value1String, Value2String) {
     Counter = 0;
     MathOperationFound = false;
+    var Result;
 
     while ((Counter < MathArray.length) && (false == MathOperationFound)) {
         if (MathArray[Counter].OperatorValue == MathOperation) {
             MathOperationFound = true;
-            CalculatorLine1.value = Value1String + " " + MathArray[Counter].Text + " " + Value2String + " " + "="
+            if (CalculationTypeEnum.CalculateOn2Numbers == CalculationType) {
+                CalculatorLine1.value = Value1String + " " + MathArray[Counter].Text + " " + Value2String + " " + "="
+                Result = (MathArray[Counter].MathOperationCalculate(parseFloat(Value1String), parseFloat(Value2String)).toString());
+            }
+            else {
+                CalculatorLine1.value = MathArray[Counter].Text + " " + Value2String + " " + "=";
+                Result = (MathArray[Counter].MathOperationCalculate(parseFloat(Value2String)).toString());
+            }
             CalculatorMode = CalculatorModeEnum.CalculationOnPrevioiusResult;
-            return (MathArray[Counter].MathOperationCalculate(parseFloat(Value1String), parseFloat(Value2String)).toString());
+            return Result;
+            //return (MathArray[Counter].MathOperationCalculate(parseFloat(Value1String), parseFloat(Value2String)).toString());
         }
         else {
             Counter++;
