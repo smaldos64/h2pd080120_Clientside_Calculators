@@ -115,7 +115,9 @@ function MakeMathOperationKeys() {
 function AddButtonsToPage() {
     for (Counter = 0; Counter < MathArray.length; Counter++) {
         if (0 == Counter % 3) {
-            document.write("<br\>");
+            
+            var pre = document.createElement("pre");
+            document.getElementsByClassName("CalculatorButtons")[0].appendChild(pre);
         }
 
         var button = document.createElement('input');
@@ -123,17 +125,12 @@ function AddButtonsToPage() {
         button.setAttribute('ID', MathArray[Counter].ID);
         button.setAttribute('value', MathArray[Counter].Text);
         button.setAttribute('onclick', MathArray[Counter].MathOperation);
-        //button.setAttribute('form', 'myform');
         button.style.backgroundColor = MathArray[Counter].BackgroundColor;
         button.style.color = MathArray[Counter].TextColor;
         button.style.width = "100px";
         button.style.height = "40px";
-        //button.style.textAlign = "center";
-        document.body.appendChild(button);
-        //button.setAttribute("class", "btn btn-primary");
-        //$('#button').addClass('myClass');
-        //$('#btnSendMailClone').css("margin-right", "100px")
-        //$('#btnSendMailClone').css("width", "98");
+        //document.body.appendChild(button);
+        document.getElementsByClassName("CalculatorButtons")[0].appendChild(button);
     }
 }
 
